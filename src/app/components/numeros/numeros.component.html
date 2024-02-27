@@ -1,0 +1,19 @@
+<h1 class="text-center mt-5 vamp titulo">NUMEROS</h1>
+<h2 class="text-center coming">¿Hasta qué número queremos contar?</h2>
+
+
+<div class="mt-5 d-flex justify-content-evenly align-items-center">
+    <mat-form-field class="example-form-field">
+        <input matInput type="number" [(ngModel)]="limite" (ngModelChange)="pintar(0)">
+    </mat-form-field>
+
+    <mat-slide-toggle class="rapido" [(ngModel)]="rapido" color="primary">¿Rápido?</mat-slide-toggle>
+</div>
+
+<hr>
+
+<div *ngIf="limite && limite>0" class="contenedor mt-5">
+    <div *ngFor="let item of selectedArray" class="elemento">
+        <span [style.color]="item.color" class="numero">{{item.number}}</span>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<h1 class="text-center mt-5 vamp titulo">PALABRAS</h1>
+<h2 class="text-center coming">Vamos a contar cuántas veces aparece nuestra palabra</h2>
+
+<div class="mt-5 align-items-center">
+    <mat-form-field *ngIf="!buscado" class="w-100">
+        <mat-label>Cuento</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="10" cdkAutosizeMaxRows="10" [(ngModel)]="cuento"></textarea>
+    </mat-form-field>
+
+    <div *ngIf="buscado">
+        <p [ngClass]="reseteado?'oculto':''">La palabra "<span class="resaltado">{{palabra}}</span>" aparece <span class="resaltado">{{contador}}</span> veces.</p>
+        <div class="alto">
+            <p class="w-100" [innerHTML]="copiaCuento"></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <mat-form-field>
+            <mat-label>Nuestra palabra</mat-label>
+            <input matInput [(ngModel)]="palabra" (ngModelChange)="reset()">
+        </mat-form-field>
+
+        <div class="d-flex justify-content-start gap-3">
+            <button mat-raised-button [disabled]="palabra.length==0 || cuento.length==0" color="primary" (click)="buscar()">Buscar</button>
+            <button *ngIf="buscado" mat-raised-button color="warn" (click)="borrar()">Borrar</button>
+        </div>
+    </div>
+</div>
